@@ -14,7 +14,7 @@ const RegesterPage = () => {
 
                     {/* Logo */}
                     <div className="flex items-center gap-2 mb-4">
-                        <NavLink to={"/"} className="text-lg font-semibold tracking-wider">EPAYROLL</NavLink>
+                        <NavLink to={"/"} className="text-lg font-semibold tracking-wider">SalaryHive</NavLink>
                     </div>
 
                     {/* Heading small */}

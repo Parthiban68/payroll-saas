@@ -14,12 +14,12 @@ export default function LandingPage() {
     const [demoOpen, setDemoOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-linear-to-br from-[#fffaf2] via-[#fffef9] to-[#fff1c6] text-gray-900">
+        <div id="hero" className="min-h-screen bg-linear-to-br from-[#fffaf2] via-[#fffef9] to-[#fff1c6] text-gray-900">
             {/* NAV */}
             <header className="sticky top-0 z-40 bg-white/40 backdrop-blur-xl">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <a href="#hero" className="text-xl md:text-2xl font-bold px-4 py-1 rounded-full  text-black">E-Payroll</a>
+                        <a href="#hero" className="text-xl md:text-2xl font-bold px-4 py-1 rounded-full  text-black">SalaryHive</a>
                         <nav className="hidden md:flex items-center gap-4 text-sm">
                             <a href="#features" className="hover:underline">Features</a>
                             <a href="#integrations" className="hover:underline">Integrations</a>
@@ -55,7 +55,7 @@ export default function LandingPage() {
             </header>
 
             {/* HERO */}
-            <section id="hero" className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <section  className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-black">
                         Smart payroll, attendance and HR — built for modern teams.
@@ -253,7 +253,7 @@ export default function LandingPage() {
 
                     <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Testimonial
-                            quote="Switching to E-Payroll saved us 80% of our payroll time. Integration was painless."
+                            quote="Switching to SalaryHive saved us 80% of our payroll time. Integration was painless."
                             name="Gnana Jayanthi"
                             title="Associate manager, KRG Technologies"
                         />
@@ -291,7 +291,7 @@ export default function LandingPage() {
             {/* FOOTER */}
             <footer className="py-10 text-center text-gray-600 px-6">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                    <div>© {new Date().getFullYear()} E-Payroll — All rights reserved.</div>
+                    <div>© {new Date().getFullYear()} SalaryHive — All rights reserved.</div>
                     <div className="flex gap-4">
                         <a href="#" className="text-sm hover:underline">Privacy</a>
                         <a href="#" className="text-sm hover:underline">Terms</a>

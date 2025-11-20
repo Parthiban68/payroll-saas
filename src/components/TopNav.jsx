@@ -2,17 +2,22 @@ import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { Settings, Bell, User, Menu, X } from "lucide-react";
 import NotificationPanel from "./NotificationPanel";
+import { useAuth } from "../context/AuthContext";
+import ProfileMenu from "./ProfileMenu";
 
 export default function TopNav() {
-  const [open, setOpen] = useState(false); // mobile drawer
-  const [notificationOpen, setNotificationOpen] = useState(false); // notification panel
+  const [open, setOpen] = useState(false); 
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const { user } = useAuth();
 
-  const menu = [
-    { name: "Dashboard", path: "/dashboard" },
+  const menu = user?.role === "admin" ? [
+    { name: "Dashboard", path: "/payrolladmindashboard" },
     { name: "People", path: "/people" },
-    { name: "Attendace", path: "/attendace" },
     { name: "Salary", path: "/salary" },
-    // { name: "Pricing", path: "/pricing" }
+  ] : [
+    { name: "Dashboard", path: "/dashboard" },
+    { name: "Attendace", path: "/attendace" },
+    { name: "Payslip", path: "/payslip" },
   ];
 
   // Disable scroll when mobile menu opens
@@ -29,7 +34,7 @@ export default function TopNav() {
 
         {/* Logo */}
         <NavLink to={"/dashboard"} className="text-xl md:text-2xl font-bold px-4 py-1 rounded-full  text-black">
-          E-payroll
+        SalaryHive
         </NavLink>
 
         {/* DESKTOP MENU */}
@@ -80,8 +85,8 @@ export default function TopNav() {
             </div>
 
             {/* User */}
-            <button className="w-10 h-10 rounded-full bg-gray-100 shadow flex items-center justify-center">
-              <User className="w-5 h-5" />
+            <button className="w">
+             <ProfileMenu user={user}/>
             </button>
           </div>
         </div>

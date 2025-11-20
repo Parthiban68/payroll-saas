@@ -5,9 +5,6 @@ export default function NotificationPanel({ open, setOpen }) {
     const panelRef = useRef();
     const [tab, setTab] = useState("all");
 
-    // ============================
-    // 🟡 E-PAYROLL THEMED NOTIFICATIONS
-    // ============================
     const notifications = [
         {
             id: 1,

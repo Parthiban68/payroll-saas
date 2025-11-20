@@ -16,6 +16,9 @@ import PricingPage from "./pages/PricingPage";
 import SalaryPage from "./pages/SalaryPage";
 import AttendancePage from "./pages/AttendancePage";
 import LandingPage from "./pages/LandingPage";
+import MyAccount from "./pages/MyAccount";
+import PayslipPage from "./pages/PayslipPage";
+import PayrollAdminDashboard from "./pages/PayrollAdminDashboard";
 
 // =============================
 // PROTECTED ROUTE COMPONENT
@@ -86,6 +89,31 @@ export default function App() {
                 }
               />
 
+              <Route
+                path="/myaccount"
+                element={
+                  <ProtectedRoute>
+                    <MyAccount />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/payslip"
+                element={
+                  <ProtectedRoute>
+                    <PayslipPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/payrolladmindashboard"
+                element={
+                  <ProtectedRoute>
+                    <PayrollAdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
               {/* Redirect unknown routes */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

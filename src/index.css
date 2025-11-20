@@ -7,3 +7,33 @@
 * {
     font-family: "Poppins",
 } */
+
+@layer utilities {
+    .animate-scaleFadeDrop {
+      animation: scaleFadeDrop 0.28s ease-out;
+    }
+    @keyframes scaleFadeDrop {
+      0% { opacity: 0; transform: translateY(-6px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  }
+
+  
+  .animate-fadeIn {
+    animation: fadeIn .35s ease-out;
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(4px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  
+  .animate-float {
+    animation: float 3s infinite ease-in-out;
+  }
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+  }
+  

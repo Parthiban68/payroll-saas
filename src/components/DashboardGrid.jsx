@@ -28,7 +28,7 @@ export default function DashboardGrid() {
       <div
         className="
           grid gap-4
-          bg-gradient-to-r from-[#ececec] via-[#f7f3e7] to-[#fff5d5]
+          bg-linear-to-r from-[#ececec] via-[#f7f3e7] to-[#fff5d5]
           p-4 rounded-2xl
 
           grid-cols-1      /* mobile */
@@ -57,7 +57,7 @@ export default function DashboardGrid() {
             className="w-full h-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent"></div>
 
           <div className="absolute bottom-0 left-0 w-full p-4 flex items-center justify-between">
             <div>
@@ -121,7 +121,7 @@ export default function DashboardGrid() {
         {/* ------------------------------------------------ */}
         <div
           className="
-            rounded-3xl shadow bg-gradient-to-br from-white to-[#f9f6e7] 
+            rounded-3xl shadow bg-linear-to-br from-white to-[#f9f6e7] 
             p-5 relative
 
             h-[300px]
@@ -200,7 +200,7 @@ export default function DashboardGrid() {
         {/* ------------------------------------------------ */}
         <div
           className="
-            rounded-3xl shadow-xl bg-gradient-to-b from-white to-yellow-50 
+            rounded-3xl shadow-xl bg-linear-to-b from-white to-yellow-50 
             p-4 flex flex-col
 
             h-[340px]

@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 export default function LoginPage() {
 
   const { login } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -14,9 +15,13 @@ export default function LoginPage() {
     e.preventDefault();
 
     const ok = login(email, password);
-
+    
     if (ok) {
-      navigate("/dashboard");
+      if (ok?.role === "admin") {
+        navigate("/payrolladmindashboard");
+      } else {
+        navigate("/dashboard");
+      }
     } else {
       alert("Invalid login details");
     }
@@ -33,7 +38,7 @@ export default function LoginPage() {
           {/* <div className="absolute -top-10 -left-10 w-40 h-40 bg-linear-to-br from-yellow-300 to-orange-200 opacity-30 blur-3xl rounded-full"></div> */}
 
           <div className="flex items-center gap-2 mb-4">
-            <NavLink to={"/"} className="text-lg font-semibold tracking-wider">EPAYROLL</NavLink>
+            <NavLink to={"/"} className="text-lg font-semibold tracking-wider">SalaryHive</NavLink>
           </div>
 
           <h2 className="text-2xl font-semibold text-gray-800 tracking-tight">

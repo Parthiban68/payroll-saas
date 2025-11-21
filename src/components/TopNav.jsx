@@ -8,9 +8,16 @@ import ProfileMenu from "./ProfileMenu";
 export default function TopNav() {
   const [open, setOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
-  const { user } = useAuth();
+  const [user, setUser] = useState("");
 
-  const menu = user?.role === "admin" ? [
+  useEffect(() => {
+    const role = sessionStorage.getItem("role");
+    setUser(role);
+  }, []);
+  
+  console.log(user,"sdfsdfd");
+  
+  const menu = user === "admin" ? [
     { name: "Dashboard", path: "/payrolladmindashboard" },
     { name: "People", path: "/people" },
     { name: "Salary", path: "/salary" },
@@ -30,11 +37,11 @@ export default function TopNav() {
       {/* =======================
           TOP NAVBAR
       ======================= */}
-      <nav className="w-full py-3 px-4 flex items-center justify-between shadow-sm bg-white/70 backdrop-blur-xl sticky top-0 z-40">
+      <nav className="w-full px-4 flex items-center justify-between shadow-sm bg-white/70 backdrop-blur-xl sticky top-0 z-40">
 
         {/* Logo */}
         <NavLink
-          to={user.role === "admin" ? "/payrolladmindashboard" : "/dashboard"}
+          to={user === "admin" ? "/payrolladmindashboard" : "/dashboard"}
           className="text-xl md:text-2xl font-bold px-4 py-1 rounded-full text-black"
         >
           SalaryHive

@@ -19,6 +19,7 @@ import LandingPage from "./pages/LandingPage";
 import MyAccount from "./pages/MyAccount";
 import PayslipPage from "./pages/PayslipPage";
 import PayrollAdminDashboard from "./pages/PayrollAdminDashboard";
+import PayslipDownload from "./components/PayslipDownload";
 
 // =============================
 // PROTECTED ROUTE COMPONENT
@@ -114,6 +115,15 @@ export default function App() {
                   </ProtectedRoute>
                 }
               />
+
+
+              <Route
+                path="/payrollslip"
+                element={     
+                    <PayslipDownload />
+                }
+              />
+
               {/* Redirect unknown routes */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

@@ -31,7 +31,12 @@ export function AuthProvider({ children }) {
       };
       setUser(employeeUser);
       setIsAuth(true);
-      return true;
+      return {
+        isAuth: true,
+        name: "Employee User",
+        email,
+        role: "employee"
+      };
     }
     return false;
   };

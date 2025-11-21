@@ -15,7 +15,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     const ok = login(email, password);
-    
+    sessionStorage.setItem("role", ok?.role);
     if (ok) {
       if (ok?.role === "admin") {
         navigate("/payrolladmindashboard");

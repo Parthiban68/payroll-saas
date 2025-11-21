@@ -8,6 +8,7 @@ import {
   FileText as FileTextIcon,
   ExternalLink,
 } from "lucide-react";
+import PayslipDownload from "../components/PayslipDownload";
 
 export default function PayslipPage() {
   const months = [
@@ -48,10 +49,9 @@ export default function PayslipPage() {
   const [pdfOpen, setPdfOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState(null);
 
-  const handleViewPayslip = (url) => {
-    setPdfUrl(url);
-    setPdfOpen(true);
-  };
+  // const handleViewPayslip = () => {
+  //   setPdfOpen(true);
+  // };
 
   return (
     <div className="w-full p-6 flex gap-6">
@@ -136,7 +136,7 @@ export default function PayslipPage() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleViewPayslip("/login");
+                  setPdfOpen(true);
                 }}
                 className="text-indigo-600 text-sm font-medium flex items-center gap-1 hover:underline justify-end w-full"
               >
@@ -194,7 +194,7 @@ export default function PayslipPage() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 120, damping: 20 }}
-              className="fixed right-0 top-0 h-full w-[470px] bg-white shadow-2xl z-50 flex flex-col"
+              className="fixed right-0 top-0 h-full w-[670px] bg-white shadow-2xl z-50 flex flex-col"
             >
               {/* HEADER */}
               <div className="p-4 flex justify-between items-center border-b">
@@ -209,7 +209,7 @@ export default function PayslipPage() {
               </div>
 
               {/* PDF VIEWER */}
-              <motion.iframe
+              {/* <motion.iframe
                 key={pdfUrl}
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -218,7 +218,21 @@ export default function PayslipPage() {
                 src={pdfUrl}
                 className="w-full h-full"
                 title="Payslip PDF Viewer"
-              />
+              /> */}
+              <div className="w-full h-full overflow-y-auto">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  title="Payslip PDF Viewer"
+                  className="w-full min-h-full overflow-y-auto"
+                >
+                  <PayslipDownload />
+                </motion.div>
+              </div>
+
+
             </motion.div>
           </>
         )}

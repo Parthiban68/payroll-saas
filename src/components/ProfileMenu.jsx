@@ -12,6 +12,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 export default function ProfileMenu({ user }) {
   const [open, setOpen] = useState(false);
   const [logoutConfirm, setLogoutConfirm] = useState(false);
+  const [adminuser , setAdminUser] = useState()
   const ref = useRef();
   const Navigate = useNavigate();
 
@@ -25,6 +26,10 @@ export default function ProfileMenu({ user }) {
 
   // Close when clicking outside
   useEffect(() => {
+    const role = sessionStorage.getItem("role");
+    if (role) {
+      setAdminUser(role)
+    }
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
     };
@@ -85,7 +90,7 @@ export default function ProfileMenu({ user }) {
           {/* ULTRA PREMIUM MENU ITEMS */}
           <div className="flex flex-col text-sm py-2 bg-white">
 
-            {user.role === "admin" ?  <>
+            {adminuser === "admin" ?  <>
                 <MenuItem to="/payrolladmindashboard" label="Dashboard" Icon={LayoutDashboard} setOpen={setOpen} />
                 {/* <MenuItem to="/myaccount" label="My Account" Icon={User} setOpen={setOpen} /> */}
               </>:

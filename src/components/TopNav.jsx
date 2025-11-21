@@ -15,8 +15,6 @@ export default function TopNav() {
     setUser(role);
   }, []);
   
-  console.log(user,"sdfsdfd");
-  
   const menu = user === "admin" ? [
     { name: "Dashboard", path: "/payrolladmindashboard" },
     { name: "People", path: "/people" },

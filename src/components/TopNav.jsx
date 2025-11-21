@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import ProfileMenu from "./ProfileMenu";
 
 export default function TopNav() {
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const { user } = useAuth();
 
@@ -33,9 +33,13 @@ export default function TopNav() {
       <nav className="w-full py-3 px-4 flex items-center justify-between shadow-sm bg-white/70 backdrop-blur-xl sticky top-0 z-40">
 
         {/* Logo */}
-        <NavLink to={"/dashboard"} className="text-xl md:text-2xl font-bold px-4 py-1 rounded-full  text-black">
-        SalaryHive
+        <NavLink
+          to={user.role === "admin" ? "/payrolladmindashboard" : "/dashboard"}
+          className="text-xl md:text-2xl font-bold px-4 py-1 rounded-full text-black"
+        >
+          SalaryHive
         </NavLink>
+
 
         {/* DESKTOP MENU */}
         <div className="hidden lg:flex items-center gap-5 bg-white/60 px-4 py-2 rounded-full shadow-sm">
@@ -86,7 +90,7 @@ export default function TopNav() {
 
             {/* User */}
             <button className="w">
-             <ProfileMenu user={user}/>
+              <ProfileMenu user={user} />
             </button>
           </div>
         </div>

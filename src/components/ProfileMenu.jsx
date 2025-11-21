@@ -22,7 +22,7 @@ export default function ProfileMenu({ user }) {
       document.body.style.overflow = "auto";
     }
   }, [logoutConfirm]);
-  
+
   // Close when clicking outside
   useEffect(() => {
     const handler = (e) => {
@@ -85,10 +85,15 @@ export default function ProfileMenu({ user }) {
           {/* ULTRA PREMIUM MENU ITEMS */}
           <div className="flex flex-col text-sm py-2 bg-white">
 
-            <MenuItem to="/dashboard" label="Dashboard" Icon={LayoutDashboard} setOpen={setOpen}/>
-            <MenuItem to="/myaccount" label="My Account" Icon={User} setOpen={setOpen}/>
-            {/* <MenuItem to="/plans" label="Plans" Icon={Wallet} />
-            <MenuItem to="/settings" label="Settings" Icon={Settings} border /> */}
+            {user.role === "admin" ?  <>
+                <MenuItem to="/payrolladmindashboard" label="Dashboard" Icon={LayoutDashboard} setOpen={setOpen} />
+                {/* <MenuItem to="/myaccount" label="My Account" Icon={User} setOpen={setOpen} /> */}
+              </>:
+              <>
+                <MenuItem to="/dashboard" label="Dashboard" Icon={LayoutDashboard} setOpen={setOpen} />
+                <MenuItem to="/myaccount" label="My Account" Icon={User} setOpen={setOpen} />
+              </>
+            }
 
             {/* Logout */}
             <button
@@ -105,7 +110,7 @@ export default function ProfileMenu({ user }) {
 
         </div>
       )}
-{/* 
+      {/* 
       {logoutConfirm && (
         <div className="
     fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999]
@@ -138,63 +143,63 @@ export default function ProfileMenu({ user }) {
           </div>
         </div>
       )} */}
-{logoutConfirm && (
-  <div
-    className="
+      {logoutConfirm && (
+        <div
+          className="
       fixed inset-0 bg-black/40 backdrop-blur-sm 
       flex items-center justify-center 
       min-h-screen
       z-50 
       animate-[fadeIn_0.25s_ease-out]
     "
-  >
-    <div
-      className="
+        >
+          <div
+            className="
         bg-white rounded-2xl p-6 w-80 shadow-2xl 
         animate-[scaleUp_0.95s_ease-out] 
       "
-    >
-      <h2 className="text-xl font-semibold text-gray-800 flex  gap-2">
-        Confirm Logout
-      </h2>
+          >
+            <h2 className="text-xl font-semibold text-gray-800 flex  gap-2">
+              Confirm Logout
+            </h2>
 
-      <p className="text-sm text-gray-600 mt-2">
-        Are you sure you want to logout from your account?
-      </p>
+            <p className="text-sm text-gray-600 mt-2">
+              Are you sure you want to logout from your account?
+            </p>
 
-      <div className="flex justify-end gap-3 mt-6">
+            <div className="flex justify-end gap-3 mt-6">
 
-        {/* Cancel */}
-        <button
-          onClick={() => setLogoutConfirm(false)}
-          className="
+              {/* Cancel */}
+              <button
+                onClick={() => setLogoutConfirm(false)}
+                className="
             px-4 py-2 rounded-lg 
             bg-gray-50 hover:bg-gray-300 
             text-gray-900 transition font-medium shadow
           "
-        >
-          Cancel
-        </button>
+              >
+                Cancel
+              </button>
 
-        {/* Confirm Logout */}
-        <button
-          onClick={() => {
-            setLogoutConfirm(false);
-            Navigate("/");
-          }}
-          className="
+              {/* Confirm Logout */}
+              <button
+                onClick={() => {
+                  setLogoutConfirm(false);
+                  Navigate("/");
+                }}
+                className="
             px-4 py-2 rounded-lg 
             bg-red-600 text-white 
             transition font-medium shadow
             cursor-pointer
           "
-        >
-          Yes, Logout
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+              >
+                Yes, Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

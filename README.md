@@ -1,16 +1,45 @@
-# React + Vite
+SalaryHive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive frontend interface designed to help users explore salary insights with clarity and ease. SalaryHive focuses on clean UI, intuitive navigation, and scalable components, making compensation data simple to understand across all devices.
 
-Currently, two official plugins are available:
+🚀 Getting Started
+Install Dependencies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+npm install
 
-## React Compiler
+Start Development Server
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+npm run dev
 
-## Expanding the ESLint configuration
+Build for Production
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+npm run build
+
+Preview Production Build
+
+npm run preview
+
+🔐 Demo Login Credentials
+Admin
+
+Email: admin@gmail.com
+
+Password: admin@123
+
+User
+
+Email: user@gmail.com
+
+Password: user@123
+
+📦 Tech Stack
+
+HTML, CSS, JavaScript (or React/Vite if applicable)
+
+Responsive UI design
+
+Component-driven structure
+
+📝 Notes
+
+Feel free to clone, customize, or extend the UI as needed for further integrations.

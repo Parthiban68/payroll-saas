@@ -34,7 +34,7 @@ Password: user@123
 
 📦 Tech Stack
 
-HTML, CSS, JavaScript (or React/Vite if applicable)
+ React/Vite
 
 Responsive UI design
 

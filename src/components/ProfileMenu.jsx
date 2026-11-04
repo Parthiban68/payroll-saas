@@ -8,11 +8,12 @@ import {
   LogOut,
 } from "lucide-react";
 import { useNavigate, NavLink } from "react-router-dom";
+import apiClient from "../service/apiClient";
 
 export default function ProfileMenu({ user }) {
   const [open, setOpen] = useState(false);
   const [logoutConfirm, setLogoutConfirm] = useState(false);
-  const [adminuser , setAdminUser] = useState()
+  const [adminuser, setAdminUser] = useState();
   const ref = useRef();
   const Navigate = useNavigate();
 
@@ -28,7 +29,7 @@ export default function ProfileMenu({ user }) {
   useEffect(() => {
     const role = sessionStorage.getItem("role");
     if (role) {
-      setAdminUser(role)
+      setAdminUser(role);
     }
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
@@ -37,9 +38,17 @@ export default function ProfileMenu({ user }) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  const handleSubmit = async () => {
+    const res = await apiClient.post("/v1/user/logout", {}, );
+    console.log(res);
+    if (res.data.success === true) {
+      setLogoutConfirm(false);
+      Navigate("/");
+    }
+  };
+
   return (
     <div className="relative" ref={ref}>
-
       {/* PROFILE BUTTON */}
       <button
         onClick={() => setOpen(!open)}
@@ -49,7 +58,10 @@ export default function ProfileMenu({ user }) {
         "
       >
         <img
-          src={user?.photoURL || "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"}
+          src={
+            user?.photoURL ||
+            "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
+          }
           className="w-9 h-9 rounded-full object-cover"
         />
         <ChevronDown
@@ -70,35 +82,57 @@ export default function ProfileMenu({ user }) {
             transition-all duration-300 animate-fadeSlideIn
           "
         >
-
           {/* TOP PROFILE SECTION */}
           <div className="flex items-center gap-3 px-5 py-4 border-b border-white/30">
             <div className="relative">
               <img
-                src={user?.photoURL || "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"}
+                src={
+                  user?.photoURL ||
+                  "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
+                }
                 className="w-11 h-11 rounded-full object-cover"
               />
               <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-gray-900">{user?.name || "Sri Krishna"}</p>
-              <p className="text-xs text-gray-600">{user?.email || "srikrishna@timeless.co"}</p>
+              <p className="text-sm font-semibold text-gray-900">
+                {user?.name || "Sri Krishna"}
+              </p>
+              <p className="text-xs text-gray-600">
+                {user?.email || "srikrishna@timeless.co"}
+              </p>
             </div>
           </div>
 
           {/* ULTRA PREMIUM MENU ITEMS */}
           <div className="flex flex-col text-sm py-2 bg-white">
-
-            {adminuser === "admin" ?  <>
-                <MenuItem to="/payrolladmindashboard" label="Dashboard" Icon={LayoutDashboard} setOpen={setOpen} />
-                {/* <MenuItem to="/myaccount" label="My Account" Icon={User} setOpen={setOpen} /> */}
-              </>:
+            {adminuser === "admin" ? (
               <>
-                <MenuItem to="/dashboard" label="Dashboard" Icon={LayoutDashboard} setOpen={setOpen} />
-                <MenuItem to="/myaccount" label="My Account" Icon={User} setOpen={setOpen} />
+                <MenuItem
+                  to="/payrolladmindashboard"
+                  label="Dashboard"
+                  Icon={LayoutDashboard}
+                  setOpen={setOpen}
+                />
+                {/* <MenuItem to="/myaccount" label="My Account" Icon={User} setOpen={setOpen} /> */}
               </>
-            }
+            ) : (
+              <>
+                <MenuItem
+                  to="/dashboard"
+                  label="Dashboard"
+                  Icon={LayoutDashboard}
+                  setOpen={setOpen}
+                />
+                <MenuItem
+                  to="/myaccount"
+                  label="My Account"
+                  Icon={User}
+                  setOpen={setOpen}
+                />
+              </>
+            )}
 
             {/* Logout */}
             <button
@@ -112,7 +146,6 @@ export default function ProfileMenu({ user }) {
               Log out
             </button>
           </div>
-
         </div>
       )}
       {/* 
@@ -173,7 +206,6 @@ export default function ProfileMenu({ user }) {
             </p>
 
             <div className="flex justify-end gap-3 mt-6">
-
               {/* Cancel */}
               <button
                 onClick={() => setLogoutConfirm(false)}
@@ -188,10 +220,7 @@ export default function ProfileMenu({ user }) {
 
               {/* Confirm Logout */}
               <button
-                onClick={() => {
-                  setLogoutConfirm(false);
-                  Navigate("/");
-                }}
+                onClick={handleSubmit}
                 className="
             px-4 py-2 rounded-lg 
             bg-red-600 text-white 
@@ -205,7 +234,6 @@ export default function ProfileMenu({ user }) {
           </div>
         </div>
       )}
-
     </div>
   );
 }
@@ -221,9 +249,11 @@ function MenuItem({ to, label, Icon, border, setOpen }) {
         group flex items-center gap-3 px-5 py-2 relative w-full
         transition-all rounded-lg cursor-pointer 
 
-        ${isActive
-          ? "bg-yellow-100 text-yellow-700 font-semibold"
-          : "hover:bg-white/60 hover:text-yellow-700"}
+        ${
+          isActive
+            ? "bg-yellow-100 text-yellow-700 font-semibold"
+            : "hover:bg-white/60 hover:text-yellow-700"
+        }
         ${border ? "border-b border-white/30 pb-3" : ""}
       `
       }
@@ -245,4 +275,3 @@ function MenuItem({ to, label, Icon, border, setOpen }) {
     </NavLink>
   );
 }
-

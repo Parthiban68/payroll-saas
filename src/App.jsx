@@ -20,13 +20,28 @@ import MyAccount from "./pages/MyAccount";
 import PayslipPage from "./pages/PayslipPage";
 import PayrollAdminDashboard from "./pages/PayrollAdminDashboard";
 import PayslipDownload from "./components/PayslipDownload";
+import { useEffect } from "react";
 
 // =============================
 // PROTECTED ROUTE COMPONENT
 // =============================
+
 function ProtectedRoute({ children }) {
-  const { isAuth } = useAuth();
-  return isAuth ? children : <Navigate to="/login" replace />;
+  const { isAuth, loading, checkAuth } = useAuth();
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  if (loading) {
+    return null;
+  }
+
+  if (!isAuth) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
 }
 
 // =============================
@@ -34,15 +49,19 @@ function ProtectedRoute({ children }) {
 // =============================
 function ConditionalTopNav() {
   const location = useLocation();
-  const hideNav = location.pathname === "/" || location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/pricing";
+  const hideNav =
+    location.pathname === "/" ||
+    location.pathname === "/login" ||
+    location.pathname === "/register" ||
+    location.pathname === "/pricing";
 
   return hideNav ? null : <TopNav />;
 }
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <ConditionalTopNav />
 
         <div className="w-full flex flex-col">
@@ -116,20 +135,14 @@ export default function App() {
                 }
               />
 
-
-              <Route
-                path="/payrollslip"
-                element={     
-                    <PayslipDownload />
-                }
-              />
+              <Route path="/payrollslip" element={<PayslipDownload />} />
 
               {/* Redirect unknown routes */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
